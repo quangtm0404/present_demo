@@ -12,7 +12,7 @@ using authentication_demo.Data;
 namespace authentication_demo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230928151107_V1")]
+    [Migration("20231001074632_V1")]
     partial class V1
     {
         /// <inheritdoc />
@@ -154,6 +154,18 @@ namespace authentication_demo.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("580aa731-e00b-4c82-9402-d3b3bff370ca"),
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("94e7200b-f271-4b2c-bfc7-b4a382b31b56"),
+                            Name = "User"
+                        });
                 });
 
             modelBuilder.Entity("authentication_demo.Models.AppUser", b =>
@@ -163,6 +175,9 @@ namespace authentication_demo.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -205,6 +220,9 @@ namespace authentication_demo.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");

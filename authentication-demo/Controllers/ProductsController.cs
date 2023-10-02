@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,5 +26,20 @@ public class ProductsController : ControllerBase
     public IActionResult GetAuthorize()
     {
         return Ok("All Authenticated User Endpoints");
+    }
+    
+   
+    [Authorize(Policy = "StudentOnly")]
+    [HttpGet("students")]
+    public IActionResult GetForStudent()
+    {
+        return Ok("Endpoint for Student only");
+    }
+
+    [Authorize(Policy = "AtLeast21")] 
+    [HttpGet("adults")]
+    public IActionResult GetAdultsOnly() 
+    {
+        return Ok("Endpoints for who 21 years old or older only!");
     }
 }

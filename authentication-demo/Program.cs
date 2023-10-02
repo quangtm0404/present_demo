@@ -21,9 +21,9 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOpti
                 .AddAutoMapper(typeof(MapperProfiles).Assembly)
                 .AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")))
                 .AddIdentity<AppUser, AppRole>()
-                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
 builder.AddAuthenticationValidator();
+builder.AddDemoAuthorization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,9 +32,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
-
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -155,12 +155,12 @@ namespace authentication_demo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e7fd9bf9-cd1c-47ca-a1d1-5d1273bd36e6"),
+                            Id = new Guid("580aa731-e00b-4c82-9402-d3b3bff370ca"),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("8b46d95b-b3aa-4da7-897d-229b02930ca0"),
+                            Id = new Guid("94e7200b-f271-4b2c-bfc7-b4a382b31b56"),
                             Name = "User"
                         });
                 });
@@ -172,6 +172,9 @@ namespace authentication_demo.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -214,6 +217,9 @@ namespace authentication_demo.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
